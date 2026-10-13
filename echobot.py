@@ -2,7 +2,7 @@ import streamlit as st
 st.title("WilliamsJason_EchoBot")
 
 with st.chat_message("assistant"):
-  st.image(WilliamsJason_PowerBiPythonScript.PNG, caption="CIT 144 – Demographics Data Visualization")
+  st.image("WilliamsJasonPowerBiPythonScript.PNG", caption="CIT 144 – Demographics Data Visualization")
 
 # Initialize chat history
 if "messages" not in st.session_state:
