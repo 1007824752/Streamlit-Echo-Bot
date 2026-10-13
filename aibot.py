@@ -3,6 +3,7 @@ import random
 import time
 import requests
 import json
+
 def ai_ask(prompt, data=None, temperature=0.5, max_tokens=250, model="open-mistral-nemo", api_key=None, api_url="https://api.mistral.ai/v1/chat/completions"):
   if api_key is None or api_url is None:
     if "idToken" in globals():
@@ -14,7 +15,7 @@ def ai_ask(prompt, data=None, temperature=0.5, max_tokens=250, model="open-mistr
     return "Error: temperature must be a float between 0 and 2 (inclusive)"
   if not isinstance(max_tokens, (float, int)) or not (5 <= float(max_tokens) <= 5000):
     return "Error: max_tokens must be a number between 5 and 5000 (inclusive)"
-# Construct the message incorporating both prompt and data if provided
+  # Construct the message incorporating both prompt and data if provided
   message = prompt
   if data is not None:
     data_str = json.dumps(data, indent=2)
@@ -44,10 +45,8 @@ def ai_ask(prompt, data=None, temperature=0.5, max_tokens=250, model="open-mistr
     return f"Error: {str(e)}"
 # Streamed response emulator
 def response_generator():
-  response = ai_ask("Pretend you are a very friendly and helpful person.Please provide a response given the provided context. Please provide the response only with no before or after commentary.",
-                      data=st.session_state.messages,
-                      api_key=st.secrets["apikey"])
-  for word in response.split():
+  response = ai_ask("Pretend you are a very friendly and helpful person.Please provide a response given the provided context. Please provide the response only with no before or after commentary.", data=st.session_state.messages, api_key=st.secrets["apikey"])
+    for word in response.split():
       yield word + " "
       time.sleep(0.05)
 
@@ -69,13 +68,13 @@ if prompt := st.chat_input("What is up?"):
 
 #Streamed response emulator
 def response_generator():
-    response = random.choice(
-      [
-        "Hello there! How can I assist you today?",
-        "Hi, human! Is there anything I can help you with?",
-        "Do you need help?",
-      ]
-    )
-    for word in response.split():
-      yield word + " "
-      time.sleep(0.05)
+  response = random.choice(
+    [
+      "Hello there! How can I assist you today?",
+      "Hi, human! Is there anything I can help you with?",
+      "Do you need help?",
+    ]
+  )
+  for word in response.split():
+    yield word + " "
+    time.sleep(0.05)
