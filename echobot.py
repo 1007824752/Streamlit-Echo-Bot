@@ -1,5 +1,5 @@
 import streamlit as st
-  st.title("WilliamsJason_EchoBot")
+st.title("WilliamsJason_EchoBot")
 
 with st.chat_message("assistant"):
 st.image(WilliamsJason_PowerBiPythonScript.png, caption="CIT 144 – Demographics Data Visualization")
